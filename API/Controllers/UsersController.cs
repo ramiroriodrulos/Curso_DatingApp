@@ -6,6 +6,7 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -30,9 +31,18 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
-            var users = await _userRepository.GetMembersAsync();
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+            userParams.CurrentUsername = user.UserName;
+
+            if (string.IsNullOrEmpty(userParams.Gender))
+                userParams.Gender = user.Gender == "male" ? "female" : "male";
+
+            var users = await _userRepository.GetMembersAsync(userParams);
+
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, 
+                users.TotalCount, users.TotalPages);
 
             return Ok(users);
         }
@@ -55,7 +65,7 @@ namespace API.Controllers
 
             if (await _userRepository.SaveAllAsync()) return NoContent();
 
-            return BadRequest("Error al actualizar usuario");
+            return BadRequest("Failed to update user");
         }
 
         [HttpPost("add-photo")]
@@ -86,7 +96,7 @@ namespace API.Controllers
             }
                 
 
-            return BadRequest("La foto no pudo ser añadida");
+            return BadRequest("Problem addding photo");
         }
 
         [HttpPut("set-main-photo/{photoId}")]
@@ -96,7 +106,7 @@ namespace API.Controllers
 
             var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
 
-            if (photo.IsMain) return BadRequest("Ya es tu foto principal");
+            if (photo.IsMain) return BadRequest("This is already your main photo");
 
             var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
             if (currentMain != null) currentMain.IsMain = false;
@@ -104,7 +114,7 @@ namespace API.Controllers
 
             if (await _userRepository.SaveAllAsync()) return NoContent();
 
-            return BadRequest("No se pudo establecer la foto principal");
+            return BadRequest("Failed to set main photo");
         }
 
         [HttpDelete("delete-photo/{photoId}")]
@@ -116,7 +126,7 @@ namespace API.Controllers
 
             if (photo == null) return NotFound();
 
-            if (photo.IsMain) return BadRequest("No puedes eliminar tu foto principal");
+            if (photo.IsMain) return BadRequest("You cannot delete your main photo");
 
             if (photo.PublicId != null)
             {
@@ -128,7 +138,7 @@ namespace API.Controllers
 
             if (await _userRepository.SaveAllAsync()) return Ok();
 
-            return BadRequest("La foto no pudo ser eliminada");
+            return BadRequest("Failed to delete the photo");
         }
     }
 }
