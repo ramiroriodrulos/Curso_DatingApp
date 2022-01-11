@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2VXWKm5PJ1N7bk4K2MLhLxT5hdz4xfiP2Uwtwbu651RuvVUfwgG7ge3RRYgY97LAYmuotsqTvEy7EuawEdmA3A==",
+  "dgSpecHash": "wd119joX8TozZQhOl3jDCaXm819wo3a8AYp+uKcr1stUDhSB81YTy/x3EsUBD1kcVNnGCU21x2Z5KKwFfEMF8g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rrio\\Curso_DatingApp\\api\\API.csproj",
+  "projectFilePath": "C:\\Users\\rrio\\Curso_DatingApp\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rrio\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\rrio\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

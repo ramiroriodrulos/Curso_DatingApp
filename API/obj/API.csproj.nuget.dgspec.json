@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rrio\\Curso_DatingApp\\api\\API.csproj": {}
+    "C:\\Users\\rrio\\Curso_DatingApp\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rrio\\Curso_DatingApp\\api\\API.csproj": {
+    "C:\\Users\\rrio\\Curso_DatingApp\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rrio\\Curso_DatingApp\\api\\API.csproj",
+        "projectUniqueName": "C:\\Users\\rrio\\Curso_DatingApp\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\rrio\\Curso_DatingApp\\api\\API.csproj",
+        "projectPath": "C:\\Users\\rrio\\Curso_DatingApp\\API\\API.csproj",
         "packagesPath": "C:\\Users\\rrio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rrio\\Curso_DatingApp\\api\\obj\\",
+        "outputPath": "C:\\Users\\rrio\\Curso_DatingApp\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
